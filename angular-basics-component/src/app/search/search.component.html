@@ -1,0 +1,17 @@
+<!-- ngClass: if the condition (searchValue != '') is true
+then the css class (changeBackground) will pe aplied on the html element (<div>) -->
+<div class="search-div" [ngClass]="{changeBackground: searchValue != ''}">
+    <span><b>Search:</b></span>
+
+    <!-- DATA BINDING: Event binding
+    from view to component -->
+    <!-- <input type="text" (input)="changeSearchValue($event)"> -->
+
+    <!-- DATA BINDING: Two way data binding
+    from view to component and from component to view at the same time -->
+    <input type="text" [(ngModel)]="searchValue">
+    
+    <!-- *ngIf used to render an html element if the condition is true.
+    If it's false the element will not be rendered -->
+    <span *ngIf="searchValue != ''"> You searched for: {{searchValue}}</span>
+</div>

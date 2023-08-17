@@ -1,0 +1,33 @@
+<!-- <div *ngFor="let item of [1,2,3]">
+    <p>The selected item is: {{item}}</p>
+</div> -->
+
+<!-- *ngFor directive used to manipulate the DOM 
+    (that means is a structural directive): add or remove html elements -->
+<div *ngFor="let p of products; let i = index">
+    <div class="product-container" [ngStyle]="{backgroundColor: p.available === 'Available' ? '#D5F5E3' : '#FADBD8'}">
+        <div class="image-container">
+            <img [src]="p.image" alt="" style="max-height: 50px; max-width: 50px;">
+        </div>
+        <div>
+            <div class="name-container"><h6>{{p.name}}</h6></div>
+            <div class="detailContainer">
+                <!-- ngStyle used to change the css property of an element dinamically -->
+                <div class="details" [ngStyle]="{color: p.available === 'Available' ? 'green' : 'red'}">{{p.available}}</div>
+                <div class="details"><b>Price: </b>${{p.price}}</div>
+                <div class="details"><b>Color: </b>{{p.color}}</div>
+            </div> 
+        </div>
+        <div class="options">
+            <button class="btn btn-success">Show Details</button>
+            <button class="btn btn-warning" *ngIf="p.available === 'Available'; else notifyme">Buy Now</button>
+           <!-- ng-template: we add it when we want to render a html element
+            if the condition in ngIf is false, we have to specify a name for
+            the template and add it in the else condition of the ngIf 
+            as we did above -->
+            <ng-template #notifyme>
+                <button class="btn btn-danger">Notify me</button>
+            </ng-template>
+        </div>
+    </div>
+</div>
