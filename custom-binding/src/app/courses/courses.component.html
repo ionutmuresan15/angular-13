@@ -1,0 +1,38 @@
+<div>
+    <app-search></app-search>
+    <!-- CUSTOM PROPERTY BINDING: transfer data from parent to child
+    parent(CoursesComponent) -> child(FilterComponent)
+    using @Input decorator in child component and after bind the properties
+    in the html tag of the child component used in parent component -->
+    <app-filter 
+    [all]="getAllCourses()"
+    [free]="getFreeCourses()"
+    [premium]="getPremiumCourses()"
+    (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"
+    ></app-filter>
+    <!-- for above: when (filterRadioButtonSelectionChanged) event is rising
+         we receive some data (All,Free,Premium) we have configured before what
+         data we receive in filter component (which is the child) and after
+         we put the value of that data in a variable in courses component (parent)-->
+</div>
+
+<ng-container *ngFor="let course of courses">
+    <div class="course-container" *ngIf="courseCountRadioButton === 'All' || courseCountRadioButton === course.type">
+        <div class="course-card">
+            <div>
+                <img [src]="course.image" style="width: 220px; height: 140px;"> 
+            </div>
+            <div class="course-name"><h4>{{course.name}}</h4></div>
+            <div class="course-description"><p>{{course.description.slice(0, 80)}}...</p></div>
+            <div class="details">
+                <div class="course-type" [ngStyle]="{color: course.type === 'Free' ? 'Green' : 'Red'}">{{course.type}}</div>
+                <div class="course-price"><b>Price: </b>${{course.price}}</div>
+            </div>
+            <div class="course-buttons">
+                <button class="btn btn-buy">Buy now</button>
+                <button class="btn btn-show">Show Details</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+

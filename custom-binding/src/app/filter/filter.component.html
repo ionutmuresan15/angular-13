@@ -1,0 +1,25 @@
+<div class="filter-container">
+    <span>Filter: </span>
+
+    <!-- When the change event is activating, which means that a radio button
+        changes his value the onRadioButtonSelectionChanged() function is called
+        and that function will emit an event with the value of what radio button
+        is selected: so if the all courses radio button is selected the emitted evnet
+        will return the string 'All', that's how onRadioButtonSelectionChanged()
+        was designed. -->
+    <input type="radio" name="filter" value="All" 
+    [(ngModel)]="selectedRadioButtonValue"
+    (change)="onRadioButtonSelectionChanged()" />
+    <span> {{'All Courses ' + '(' + all + ')'}}</span>
+
+    <input type="radio" name="filter" value="Free" 
+    [(ngModel)]="selectedRadioButtonValue"
+    (change)="onRadioButtonSelectionChanged()" />
+    <span> {{'Free Courses ' + '(' + free + ')'}}</span>
+
+    <input type="radio" name="filter" value="Premium" 
+    [(ngModel)]="selectedRadioButtonValue"
+    (change)="onRadioButtonSelectionChanged()" />
+    <span> {{'Premium Courses ' + '(' + premium + ')'}}</span>
+
+</div>
