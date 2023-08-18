@@ -1,4 +1,6 @@
 <div class="serch-container">
     <span>Search: </span>
-    <input type="text">
+    <input type="text" 
+    [(ngModel)] = "enteredSearchValue"
+    (input)="onSearchTextChanged()">
 </div>

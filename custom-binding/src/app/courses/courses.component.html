@@ -1,5 +1,6 @@
 <div>
-    <app-search></app-search>
+    <app-search
+    (searchTextChanged)="onSearchTextEntered($event)"></app-search>
     <!-- CUSTOM PROPERTY BINDING: transfer data from parent to child
     parent(CoursesComponent) -> child(FilterComponent)
     using @Input decorator in child component and after bind the properties
@@ -17,7 +18,8 @@
 </div>
 
 <ng-container *ngFor="let course of courses">
-    <div class="course-container" *ngIf="courseCountRadioButton === 'All' || courseCountRadioButton === course.type">
+    <!-- *ngIf="courseCountRadioButton === 'All' || courseCountRadioButton === course.type -->
+    <div class="course-container" *ngIf="searchText === '' || course.name.toLowerCase().includes(searchText)">
         <div class="course-card">
             <div>
                 <img [src]="course.image" style="width: 220px; height: 140px;"> 
@@ -35,4 +37,7 @@
         </div>
     </div>
 </ng-container>
+
+
+
 
