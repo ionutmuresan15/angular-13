@@ -1,0 +1,8 @@
+<!-- Template reference variable: Stores a reference to an html element, component
+or directive on which we have use it -->
+<!-- adding keyup event, so angular will detect the change in the view template
+and will render myVariable.value on the screen;
+if we are not using keyup event nothing will be render on view template -->
+<input type="text" #myVariable (keyup)="0">
+<button (click)="sayHello(myVariable)">Click me</button>
+<p>{{myVariable.value}}</p>
