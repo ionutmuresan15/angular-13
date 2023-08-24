@@ -9,5 +9,7 @@
 <app-demo></app-demo>
 <!-- Calling sayHello() method from the child component.
 Basically accessing a method, atribute.. from child component
-in to the parent component -->
+in to the parent component.
+The selector of the child component (<app-demo></app-demo>) has to be included
+in the template of the parent component, else the above things will do not work -->
 {{demo.sayHello()}}
