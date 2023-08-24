@@ -1,0 +1,27 @@
+<div style="margin: 20px auto; width: 780px;"> 
+  <div class="app-component">
+    <h2>App Component</h2>
+    <p>This is <b>app</b> component.</p>
+    <button>Button</button>
+  </div>
+
+  <div class="component-container">
+    <app-comp1></app-comp1>
+    <app-comp2></app-comp2>
+  </div>
+</div>
+
+<!--View Encapsulation: None, Emulated(default by angular), ShadowDom
+Emulated: 
+- The css property is applied only in the component where the css file is.
+None:
+- The css property is applied on the child component/s as well.
+For example: if we have a .button css class in the parent component
+then the css property of the html button will be applied to the all buttons
+of the child component/s 
+ShadowDom:
+- The css property has to be in the global css file (styles.css) and if we want to
+not apply the global css file to all components we have to specify 
+ViewEncapsulation.ShadowDom in the component where we dont want to apply the global css file.-->
+
+
