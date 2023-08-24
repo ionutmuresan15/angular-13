@@ -1,0 +1,13 @@
+<div>
+    <label>DOB: </label>
+    <input type="date" #dobInput (blur)="calculateAge()">
+</div>
+<div>
+    <label>Age: </label>
+    <input type="text" #ageInput>
+</div>
+<app-demo></app-demo>
+<!-- Calling sayHello() method from the child component.
+Basically accessing a method, atribute.. from child component
+in to the parent component -->
+{{demo.sayHello()}}
