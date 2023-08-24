@@ -1,0 +1,12 @@
+<div class="card">
+    <!-- ngContent is used to not repeat the same code over, and over.
+    EX: In this example we only used 1 component named product, and like this 
+    we didn't repeat the code 4 times, we only modify the title and the button 
+    of every product. -->
+    <ng-content select=".title"></ng-content>
+    <p class="summary">
+      Lorem ipusum dolor sit amet, conceteur adipiscing elit, sed to eidosum
+      tempor indictunt ut labore et dolore magna alique.
+    </p>
+    <ng-content select=".btn-more"></ng-content>
+  </div>
