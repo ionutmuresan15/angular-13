@@ -7,3 +7,23 @@
 <div appHighlight appHover>
   <p>This is a HTML content to understand custom attribute directive in Angular.</p>
 </div>
+
+<div class="container" appBetterhighlight [defaultColor]="'yellow'" [highlightColor]="'red'">
+  <p>This is a HTML content to understand @HostBinding directive in Angular.</p>
+</div>
+
+<!-- the below div will work like [ngClass] 
+     [ngClass] = "class1 : condition" 
+     if condition is true then the css properties from the class1
+     will be applied on the div element, if not then nothing will happen
+     So basically we create a custom [ngClass]
+-->
+
+<!--also this line of code:  
+    <div [appClass]="{container: true, 'change-font': true}">
+    could be also write like this, if we are giving up the @Input alias in class.directive.ts
+    <div appClass [display]="{container: true, 'change-font': true}"> -->
+
+<div [appClass]="{container: true, 'change-font': true}">
+  <p>This is a demo HTML content to understand how to create custom ngClass directive in Angular.</p>
+</div>

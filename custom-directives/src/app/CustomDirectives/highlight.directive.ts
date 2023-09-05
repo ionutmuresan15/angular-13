@@ -20,7 +20,7 @@ export class HighlightDirective implements OnInit {
    // DOM directly, so it provides a layer of abstraction between the DOM element
    // and the component code.
    ngOnInit(){
-    this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', 'red');
+    this.renderer.setStyle(this.element.nativeElement, 'background-color', 'red');
     this.renderer.addClass(this.element.nativeElement, 'container');
     this.renderer.setAttribute(this.element.nativeElement, 'title', 'THIS IS TITLE.');
    }
