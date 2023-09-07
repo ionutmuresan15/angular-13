@@ -27,3 +27,42 @@
 <div [appClass]="{container: true, 'change-font': true}">
   <p>This is a demo HTML content to understand how to create custom ngClass directive in Angular.</p>
 </div>
+
+<!-- custom [ngStyle] directive -->
+<div class="container" [appStyle]="{backgroundColor: active ? 'pink' : 'red', color: 'white', fontWeight: 'bold'}">
+  <p>This is a demo HTML content to understand how to create a custom ngStyke directive in Angular.</p>
+</div>
+
+<!-- how structural directive works -->
+<button class="btn btn-notice" (click)="displayNotice()">Show notice</button>
+<div class="info-container notice" *appIf="display">
+    <h3>This is a important notice. ABOVE CODE</h3>
+    <p>This is a notice issued for all website users.</p>
+</div>
+
+<!-- <ng-template #myVar>
+  <p>Paragraph to show when condition in if is false. ABOVE CODE</p>
+</ng-template> -->
+
+<!-- the above code will work in the same way as the below one,
+     that's what angular is doing behind, to make *ngIf structural directive -->
+
+<!-- <ng-template [appIf]="display">
+  <div class="info-container notice">
+    <h3>This is a important notice. BELOW CODE</h3>
+    <p>This is a notice issued for all website users.</p>
+</div>
+</ng-template> -->
+
+<!-- <ng-template #myVar>
+  <p>Paragraph to show when condition in if is false. BELOW CODE</p>
+</ng-template> -->
+
+
+<!-- [ngSwitch] works like in other programming languages -->
+<div class="container" [ngSwitch]="occupation">
+    <p *ngSwitchCase="'teacher'">This paragraph will pe displayed when occupation is teacher.</p>
+    <p *ngSwitchCase="'designer'">This paragraph will pe displayed when occupation is designer.</p>
+    <p *ngSwitchCase="'lawyer'">This paragraph will pe displayed when occupation is lawyer.</p>
+    <p *ngSwitchDefault>This paragraph is default.</p>
+</div>

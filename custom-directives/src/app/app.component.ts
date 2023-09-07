@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'custom-directives';
+
+  active: boolean = true;
+
+  display: boolean = false;
+
+  occupation: string = 'teacher';
+
+  displayNotice(){
+    this.display  = true;
+  }
 }
