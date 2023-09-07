@@ -11,7 +11,7 @@ export class HighlightDirective {
 
    // checking if the condition from app.component.html is true
    // (video with the most likes)
-   // if so then apply a css class on the html element
+   // if so then apply a css class on the html element.
    
    @Input() set appHighlight(condition: boolean){
     if(condition){
