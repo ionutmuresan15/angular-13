@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>All Courses</h2>
+    <ng-container *ngFor="let course of courses">
+        <div class="course-container">
+            <div class="course-card">
+                <div>
+                    <img [src]="course.image" style="width:220px; height:140px;">
+                </div>
+                <div class="course-name"><h4>{{ course.name}}</h4></div>
+                <div class="course-description"><p>{{course.description.slice(0, 80)}}...</p></div>
+                <div class="details">
+                    <div class="course-type" [ngStyle]="{color: course.type === 'Free' ? 'Green' : 'Red'}">{{course.type}}</div>
+                    <div class="course-price"><b>Price:</b> ${{course.price}}</div>
+                </div>
+                <div class="course-buttons">
+                    <button class="btn btn-buy">Buy Now</button>
+                    <!-- Setting route for Show Details Button
+                         so when you press Show Details Button you will be redirected
+                         to the corresponding course details
+                         Ex: you are at localhost:4200/Courses and select a course, let's say with id 101
+                             then you will be redirected to localhost:4200/Courses/Course/101  -->
+                    <button class="btn btn-show" routerLink="/Courses/Course/{{course.id}}">Show Details</button>
+                </div>
+            </div>
+        </div>  
+    </ng-container>
+</div>
+

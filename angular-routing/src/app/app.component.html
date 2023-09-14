@@ -1,0 +1,32 @@
+<div class="main-container">
+    <div class="nav-container">
+        <ul>
+            <!-- * routerLink use to match the path from app.module.ts with the links from view template. Ex: path in app.module.ts = Home then [routerLink]="['Home']" 
+                 * routerLinkActive use to style the html element coresponding to the defined path
+                 For example: if we are on localhost:4200/home, then on the home link
+                 will be applied the css class 'active'
+                 * routerLinkActiveOptions will solve the problem presented in app.module.ts at line 18, it will match the exactly given path
+                -->
+            <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['Home']">Home</a></li><!-- localhost:4200/Home -->
+            <li [routerLinkActive]="'active'"><a [routerLink]="['About']">About</a></li><!-- localhost:4200/About -->
+            <li [routerLinkActive]="'active'"><a [routerLink]="['Contact']">Contact</a></li><!-- localhost:4200/Contact -->
+            <!-- it is better to use the syntax bellow, instead of 
+                 [routerLink]="'Courses'" or routerLink="Courses" 
+                 because like this you will can attach more variables
+                 Ex: localhost:4200/Courses/10 => [routerLink]="['Courses', 10]"
+            -->
+            <li><a [routerLink]="['Courses']">Courses</a></li><!-- localhost:4200/Courses -->
+        </ul>
+    </div>
+    <div class="component-container">
+        <!-- <app-home></app-home>
+        <app-about></app-about>
+        <app-contact></app-contact>
+        <app-courses></app-courses> -->
+        
+        <!-- below code is a directive that tells angular where in our page 
+             we want to dsiplay the view, it is automatically imported when we
+             import RouterModules in app.module.ts -->
+        <router-outlet></router-outlet>
+    </div> 
+</div>
