@@ -7,26 +7,39 @@
                  will be applied the css class 'active'
                  * routerLinkActiveOptions will solve the problem presented in app.module.ts at line 18, it will match the exactly given path
                 -->
-            <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['Home']">Home</a></li><!-- localhost:4200/Home -->
-            <li [routerLinkActive]="'active'"><a [routerLink]="['About']">About</a></li><!-- localhost:4200/About -->
-            <li [routerLinkActive]="'active'"><a [routerLink]="['Contact']">Contact</a></li><!-- localhost:4200/Contact -->
-            <!-- it is better to use the syntax bellow, instead of 
-                 [routerLink]="'Courses'" or routerLink="Courses" 
-                 because like this you will can attach more variables
-                 Ex: localhost:4200/Courses/10 => [routerLink]="['Courses', 10]"
-            -->
-            <li><a [routerLink]="['Courses']">Courses</a></li><!-- localhost:4200/Courses -->
+
+            <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['Home']">Home</a></li>
+            <li [routerLinkActive]="'active'"><a [routerLink]="['About']">About</a></li>
+            <li [routerLinkActive]="'active'"><a [routerLink]="['Contact']">Contact</a></li>
+
+            <!-- [routerLink]="'Courses'" or routerLink="Courses"
+            because like this you will can attach more variables
+            Ex: localhost:4200/Courses/10 => [routerLink]="['Courses', 10]" -->
+
+            <li><a [routerLink]="['Courses']">Courses</a></li>
+
+
+            <!-- HOW TO USE FRAGMENTS -->
+            <!-- Fragments stands for a single page, moving from up to down or vice-versa -->
+
+            <!-- <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="" fragment="Home">Home</a></li>
+            <li [routerLinkActive]="'active'"><a routerLink="" fragment="About">About</a></li>
+            <li [routerLinkActive]="'active'"><a routerLink="" fragment="Contact">Contact</a></li> 
+            <li><a routerLink="" fragment="Courses">Courses</a></li> -->
+
         </ul>
     </div>
     <div class="component-container">
-        <!-- <app-home></app-home>
-        <app-about></app-about>
-        <app-contact></app-contact>
-        <app-courses></app-courses> -->
+        <!-- Used for Fragments -->
         
+        <!-- <app-home id="Home"></app-home>
+        <app-about id="About"></app-about>
+        <app-contact id="Contact"></app-contact>
+        <app-courses id="Courses"></app-courses> -->
+
         <!-- below code is a directive that tells angular where in our page 
-             we want to dsiplay the view, it is automatically imported when we
+             we want to display the view, it is automatically imported when we
              import RouterModules in app.module.ts -->
         <router-outlet></router-outlet>
-    </div> 
+    </div>
 </div>

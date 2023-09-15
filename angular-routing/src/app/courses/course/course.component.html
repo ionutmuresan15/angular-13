@@ -3,7 +3,10 @@
         <img src="{{course.image}}" width="560" height="280">
     </div>
     <div>
-        <h1 style="text-align: center;">{{course.name}}</h1>
+        <h1 style="text-align: center;" *ngIf="!editMode">{{course.name}}</h1>
+        <div style="text-align: center;" *ngIf="editMode">
+            <input type="text" [(ngModel)]="course.name">
+        </div>
     </div>
     <div class="course-details">
         <div style="margin: 0px 10px;"><b>Author: </b>{{course.author}}</div>
@@ -16,4 +19,26 @@
     <div style="margin: 20px 10px;">
         <p>{{course.description}}</p>
     </div>
+    <!--  
+        DIFFERENCES BETWEEN ROUTE PARAM AND QUERY PARAM
+        * ROUTE PARAM
+        - are required and use by angular router to determine the route
+        - they are part of the route (path) definition
+        - ex:  {path: 'Courses/Course/:id', component: CourseComponent}
+        - if we dont pass the id in the path definition, we will get an error (Page Not Found), because it is required
+        * QUERY PARAM
+        - are optional
+        - if the queryParam is missing in the URL, it will not stop angular from navigated to the defined route
+        - queryParam are not part of the route (path) definition
+        - ex: localhost:4200/Products?id=12345&&name=iphone
+        - id and name are query params
+    -->
+
+    <!-- Passing queryParams to the URL, when the button will be pressed -->
+    <!-- For more queryParams we have to use comma (,) [queryParams]="{edit: true, parameter1: value1, etc} -->
+    <!-- <button [routerLink]="['/Courses/Course', course.id]" [queryParams]="{edit: true}">Edit</button> -->
+
+    <!-- Added a queryParam programatically, by writing ts code -->
+    <button (click)="appendQueryParam()">Edit</button>
+    <button (click)="editMode=false" [routerLink]="['/Courses/Course', course.id]">Update</button>
 </div>
