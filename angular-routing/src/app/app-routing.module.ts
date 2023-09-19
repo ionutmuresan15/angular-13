@@ -6,6 +6,9 @@ import { ContactComponent } from "./contact/contact.component";
 import { CoursesComponent } from "./courses/courses.component";
 import { CourseComponent } from "./courses/course/course.component";
 import { ErrorComponent } from "./error/error.component";
+import { CourseGuardService } from "./course-guard.service";
+import { CanDeactivateGuardService } from "./candeactivate-guard.service";
+import { CourseResolveService } from "./course-resolve.service";
 
 // Another way of creating routes, almost the same how are declared in app.module.ts
 
@@ -19,8 +22,8 @@ const appRoute: Routes = [
   //{path: '', redirectTo: 'Home', pathMatch : 'full'},
   { path: "Home", component: HomeComponent },
   { path: "About", component: AboutComponent },
-  { path: "Contact", component: ContactComponent },
-  { path: "Courses", component: CoursesComponent },
+  { path: "Contact", canDeactivate: [CanDeactivateGuardService], component: ContactComponent },
+  { path: "Courses", component: CoursesComponent, resolve: {courses: CourseResolveService}},
   // Obtaining the id introduced in the URL as an argument
   // (:id is a ROUTE PARAM, colon (:) means that its value can change,
   // but is required to be present in path definition)
@@ -29,8 +32,10 @@ const appRoute: Routes = [
   // For older versions of angular, you have to put <router-outle></router-outlet>
   // inside the parent component, in our case inside CoursesComponent
   {
-    path: "Courses",
-    children: [{ path: "Course/:id", component: CourseComponent }],
+    path: "Courses", canActivateChild: [CourseGuardService],
+     children: [
+      { path: "Course/:id", component: CourseComponent }
+    ],
   },
   // below line will render the view template of ErrorComponent
   // if the introduced path will not match any path of the above
@@ -51,7 +56,9 @@ const appRoute: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoute)
+    // enableTracing will log all the navigation events (in dev console) which are 
+    //getting trigger when navigating from one route to another
+    RouterModule.forRoot(appRoute, {enableTracing: true})
 ],
   // that's the only difference that we have to export RouterModule
   exports: [

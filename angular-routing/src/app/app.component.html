@@ -26,7 +26,11 @@
             <li [routerLinkActive]="'active'"><a routerLink="" fragment="About">About</a></li>
             <li [routerLinkActive]="'active'"><a routerLink="" fragment="Contact">Contact</a></li> 
             <li><a routerLink="" fragment="Courses">Courses</a></li> -->
-
+            
+            <span style="float: right">
+                <li (click)="login()"><a>Login</a></li>
+                <li (click)="logout()"><a>Logout</a></li>
+            </span>
         </ul>
     </div>
     <div class="component-container">
@@ -41,5 +45,6 @@
              we want to display the view, it is automatically imported when we
              import RouterModules in app.module.ts -->
         <router-outlet></router-outlet>
+        <div class="spinner" *ngIf="displayLoadingIndicator"></div>
     </div>
 </div>

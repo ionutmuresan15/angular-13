@@ -12,6 +12,10 @@ import { CourseComponent } from './courses/course/course.component';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { CourseGuardService } from './course-guard.service';
+import { AuthService } from './auth.service';
+import { CanDeactivateGuardService } from './candeactivate-guard.service';
+import { CourseResolveService } from './course-resolve.service';
 
 // declaring routes
 // Ex: localhost:4200/Home will navigate to HomeComponent, and will render its view template
@@ -81,7 +85,8 @@ const appRoute : Routes = [
     //importing the outside file which containg the configuration for the routes
     AppRoutingModule
   ],
-  providers: [CoursesService],
+  providers: [CoursesService,CourseGuardService,AuthService,
+    CanDeactivateGuardService, CourseResolveService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
