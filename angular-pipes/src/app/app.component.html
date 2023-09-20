@@ -1,0 +1,67 @@
+<div class="container">
+  <input type="text" 
+  placeholder="Filter by gender"
+  style="width: 300px; padding: 10px 20px; margin: 10px 0px; height: 10px;"
+  [(ngModel)]="filteredText">
+  <div>
+    <!-- async pipe waits for the value to be available and then display the data in 
+         the web page once that value is available
+         OBS: if we are not using async pipe then we will get an object in the view
+              template, because a promise is actually an object -->
+    <h1>Total students: {{totalStudents | async}}</h1>
+  </div>
+  <table id="student">
+    <tr>
+      <th>Name</th>
+      <th>Course</th>
+      <th>Marks</th>
+      <th>Percentage</th>
+      <th>DOB</th>
+      <th>Gender</th>
+    </tr>
+      <tr *ngFor="let std of filteredStudents">
+        <td>{{std.name}}</td>
+        <td>{{std.course}}</td>
+        <td><input type="number" value="std.marks" [(ngModel)]="std.marks"></td>
+        <!-- Pipes help us to transform the data before it gets to be display
+        in the view template -->
+
+        <!-- below line of code represents a custom anuglar pipe -->
+        <td>{{std.marks | percentage: totalMarks : 2}}</td>
+        <td>{{std.DOB | date: 'medium' | uppercase}}</td>
+        <td>{{std.gender | uppercase}}</td>
+      </tr>
+  </table>
+  <br><br>
+  <button (click)="addDummyStudent()">Add Student</button>
+</div>
+
+<!-- Pure pipes are those pipes which gets executed when Angular detects a PURE
+     CHANGE on the input value.
+     PURE CHANGE is when:
+     - we are chaning the value of a primitive type: number, string, etc.
+     - we are changing the reference of reference type: array, objects, etc.
+     IF THE ABOVE THINGS ARE NOT HAPPENING THEN THE PURE PIPES ARE NOT GOINT TO 
+     BE EXECUTED.
+
+    Example of pure change in case of an array:  
+
+        students : Student[]
+        students2 : Student[]
+        students2 = students;
+        students2.push(.....)
+        students = students2
+
+        WHAT WE ARE DOING ABOVE IS TO CHANGE THE REFERENCE OF AN ARRAY,
+        IF WE WERE MAKING CHANGES ON THE INITIAL ARRAY, WE WOLDN'T HAVE A PURE CHANGE,
+        WE WOULD HAVE AN IMPURE CHANGE 
+      
+     Impure pipes are those pipes which gets executed for every change detection cycle,
+     doesn't matter if we have the same reference (same array in the above exemple).
+
+     Pure pipes are better than impure pipes, because impure pipes as I said above are
+     getting called at every change detection, that means a bigger quantity of data, which
+     is completely unnecessarily has to be render on the view template, and that can make
+     the app to work slower than usual.
+
+      -->
