@@ -1,0 +1,86 @@
+<div class="form">
+  <h2 id="registration">Registration Form</h2>
+  <!-- by doing #myForm="ngForm" we are actually getting the javascript object which 
+       contains the form, if we are only using #myForm we will get the form from DOM
+        -->
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+    <!-- create a group which contains firstname, lastname, email using ngModelGroup directive
+         Basically it will be an object like this:
+         personDetails: {firstname, lastname, email}
+         #personDetails="ngModelGroup" in meaning that we will have acces to 
+         personDetails (from the controls - javascript object) object inside there
+     -->
+      <div ngModelGroup="personDetails" #personDetails="ngModelGroup">
+        <label for="fname">First Name</label>
+        <!-- ngModel will tell angular this input element is a control of this form
+             and like this it will appear in the controls property of the form -->
+        <!-- #fname="ngModel" is meaning that we will receive the firstname object
+             inside the #fname local variable
+             name="firstname", firstname is the name we will receive -->
+        <input type="text" id="fname" placeholder="Your name.." name="firstname"
+        ngModel required #fname="ngModel">
+        <!-- <div>
+          <small *ngIf="fname.invalid && fname.touched">First name is a required field.</small>
+          <span *ngIf="firstname">You entered {{firstname}}</span>
+        </div> -->
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Your last name.." name="lastname"
+        ngModel required>
+        <!-- <div>
+          <span *ngIf="lastname">You entered {{lastname}}</span>
+        </div> -->
+
+        <label for="email">Email</label>
+        <!-- the below input is required and has to be fill with a valid email adress -->
+        <input type="email" id="email"placeholder="Your last email.." name="email"
+        ngModel required email>
+
+        <div>
+          <small *ngIf="personDetails.invalid && personDetails.touched">Some of the above field is empty!</small>
+        </div>
+
+        <div>
+          <button (click)="setDefaultValues()">Set default values</button>
+        </div>
+
+      </div>
+
+      <label for="country">Country</label>
+      <select id="country" name="country" [ngModel]="defaultCountry">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+        <option value="india">India</option>
+        <option value="uk">UK</option>
+      </select>
+      <!-- working with radio buttons in forms -->
+      <label for="gender">Gender:</label>
+      <span *ngFor="let gen of gender">
+        <input type="radio" id={{gen.id}} value={{gen.value}} name="gender" [ngModel]="defaultGender">
+        <label>{{gen.value}}</label>
+      </span>
+      <br><br>
+
+      <label>Hobbies <i>(Optional)</i></label>
+      <div class="form-inline">
+          <label><input type="checkbox" value="sports" name="hobbies" ngModel> Sports</label>
+          <label><input type="checkbox" value="movies" name="hobbies" ngModel> Movies</label>
+          <label><input type="checkbox" value="music" name="hobbies" ngModel> Music</label>
+      </div>
+      <!-- when this submit button will be clicked will raise the ngSubmit event
+           automatically -->
+      <input type="submit" value="Submit" id="btn">
+      <!--  you can disable a button like this [disabled]="myForm.invalid" -->
+    </form>
+</div>
+
+<div class="form-data">
+  <h3>Form Data</h3>
+  <p>First Name: <b>{{firstname}}</b></p>
+  <p>Last Name: <b>{{lastname}}</b></p>
+  <p>Email: <b>{{email}}</b></p>
+  <p>Country: <b>{{country}}</b></p>
+  <p>Gender: <b>{{gen}}</b></p>
+</div>
