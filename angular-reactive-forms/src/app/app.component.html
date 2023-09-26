@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form" [ngClass]="formStatus">
   <!-- Making the connection between the form in the .ts file and the form
        from .html file 
        (ngSubmit)="onSubmit() use the same as in a Template Driven Form:
@@ -12,10 +12,23 @@
         <!-- formControlName directive used to connect the properties from .ts file
              with the input html elements -->
         <input type="text" id="fname" placeholder="Your name.." formControlName="firstname">
+        <div>
+          <!-- ?. is meaning that in case errors array is null then the rest of the code
+               which is after it will not get executed anymore 
+               Also we are using there the error code from our validators
+               ex: required: true => required represents the error code-->
+          <small *ngIf="reactiveForm.get('personalDetalies.firstname')?.errors?.['required'] && reactiveForm.get('personalDetalies.firstname')?.touched">
+            Firstname is a required field.
+          </small>
+          <small *ngIf="reactiveForm.get('personalDetalies.firstname')?.errors?.['noSpaceAllowed']">
+            Firstname cannot contain spaces.
+          </small>
+        </div>
+
         <label for="lname">Last Name</label>
         <input type="text" id="lname" placeholder="Your last name.." formControlName="lastname">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your last email.." formControlName="email">
+        <input type="email" id="email" name="email" placeholder="Your email.." formControlName="email">
         <div>
           <span style="color: red"
           *ngIf="reactiveForm.get('personalDetalies.email')?.invalid 

@@ -34,3 +34,22 @@ input[type=text],[type=email], select {
   input.ng-invalid.ng-touched{
     border: red 1px solid;
   }
+
+  small{
+    color: red
+  }
+
+  .INVALID{
+    border: red 1px solid;
+    box-shadow: 0 0 31px rgba(255, 0, 0, 0.7) !important;
+  }
+
+  .PENDING{
+    border: #f6de0b 1px solid;
+    box-shadow: 0 0 31px rgba(255, 235, 0, 0.7) !important;
+  }
+
+  .VALID{
+    border: #2ee536 1px solid;
+    box-shadow: 0 0 31px rgba(78, 233, 84, 0.7) !important;
+  }
