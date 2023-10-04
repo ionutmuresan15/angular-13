@@ -1,21 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Product } from './model/product';
 import { ProductService } from './Service/products.service';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   title = 'angular-http';
   private http !: HttpClient ;
   private productService !: ProductService
   allProducts : Product[] = [];
   isFetching : boolean = false;
+  errorMessage: string = null;
+  errorSub: Subscription;
 
   currentProductId: string;
 
@@ -34,6 +37,9 @@ export class AppComponent implements OnInit {
     //when ever the page loads, we want to display all the products we have in the 
     //data base in that page
     this.fetchProducts();
+    this.errorSub = this.productService.error.subscribe((message) => {
+      this.errorMessage = message;
+    })
   }
 
   onProductsFetch(){
@@ -56,6 +62,10 @@ export class AppComponent implements OnInit {
     this.productService.fetchProduct().subscribe((products) => {
       this.allProducts = products;
       this.isFetching = false;
+      //Handling error response, if an error cause by that method will ocure 
+      //then we will catch the error inside 'err' variable
+    },(err) => {
+      this.errorMessage = err.message;
     })
   }
 
@@ -88,6 +98,11 @@ export class AppComponent implements OnInit {
     //Change the button value to update product
     this.editMode = true;
 
+  }
+
+  //Always recomanded to unsubscribe from an Observable if you are not using it anymore
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe();
   }
 
 }

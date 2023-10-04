@@ -38,13 +38,16 @@
           </tr>
           <!-- When the allProducts array is empty, we are showing the message
                'No products available!' inside the table, on the screen -->
-          <tr *ngIf="allProducts.length < 1">
+          <tr *ngIf="allProducts.length < 1 && errorMessage == null">
             <td colspan="5">No products available!</td>
           </tr>
           <!-- When data is still fetching we are showing the message
                'Loading' inside the table, on the screen -->
-          <tr *ngIf="isFetching">
+          <tr *ngIf="isFetching && errorMessage == null">
             <td colspan="5">Loading...</td>
+          </tr>
+          <tr *ngIf="errorMessage != null">
+            <td colspan="5">{{errorMessage}}</td>
           </tr>
           <tr *ngFor="let product of allProducts; index as i">
             <td>{{i + 1}}</td>
